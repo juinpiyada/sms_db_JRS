@@ -1,0 +1,528 @@
+/* SMS-ui/src/index.css */
+
+/* ====== Manage Users (global) ====== */
+
+.mu-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c7d2fe 70%, #e0e7ff 100%);
+  padding: 38px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Toast */
+.toast-wrapper {
+  position: fixed;
+  top: 30px;
+  left: 0; right: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+}
+.toast-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #059669;
+  font-weight: 700;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px #e0e7ff, 0 4px 24px #e0e7ff66;
+  padding: 15px 40px 15px 26px;
+  font-size: 17px;
+  border: 1px solid #e0e7ff;
+  min-width: 240px;
+  background: linear-gradient(90deg,#bbf7d0,#6ee7b7);
+}
+.toast--error {
+  color: #dc2626;
+  background: linear-gradient(90deg,#fee2e2,#fecaca);
+}
+.toast-emoji {
+  font-size: 19px;
+  font-weight: 900;
+  margin-right: 5px;
+  margin-top: -2px;
+}
+.toast-text { flex: 1; }
+.toast-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-weight: 900;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 4px;
+  line-height: 1;
+}
+
+/* Delete Modal + Generic Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44,47,68,0.19);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.modal {
+  background: linear-gradient(120deg,#fff 90%, #f3f0ff 100%);
+  padding: 34px 38px 28px 38px;
+  border-radius: 18px;
+  width: 420px;
+  max-width: 92vw;
+  box-shadow: 0 9px 32px rgba(80,81,140,0.17);
+  border: 1.4px solid #e0e7ff;
+  position: relative;
+  text-align: center;
+}
+
+/* --- Make wide modal smaller & tighter (Add/Edit College) --- */
+.modal--wide{
+  width: 760px;
+  max-width: 90vw;
+  text-align: left;
+  padding: 22px 22px 18px;
+}
+
+@media (min-width: 1280px){
+  .modal--wide{ width: 900px; }
+}
+
+@media (max-width: 980px){
+  .modal--wide{ width: 640px; }
+}
+
+@media (max-width: 640px){
+  .modal--wide{ width: 95vw; padding: 18px 16px; }
+}
+
+.modal-x {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  border: none;
+  background: none;
+  font-size: 26px;
+  font-weight: 800;
+  color: #6366f1;
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-title {
+  font-size: 21px;
+  color: #111827;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+.modal-title.danger { color: #b91c1c; }
+.modal-desc {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 18px;
+}
+.modal-desc--error { color: #b91c1c; }
+.modal-desc--ok { color: #059669; }
+.highlight { color: #7c3aed; font-weight: 700; }
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Generic Modal Heading (Add/Edit) */
+.modal-heading {
+  color: #4f46e5;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+/* Container + Title */
+.mu-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.mu-title {
+  text-align: center;
+  color: #3b0764;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 38px;
+  text-shadow: 0 2px 10px #d1d5db88;
+  margin-bottom: 22px;
+}
+
+/* Toolbar */
+.mu-toolbar {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 0 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.searchbox {
+  flex: 1;
+  height: 60px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 8px #e5e7eb;
+  border: 1.5px solid #ede9fe;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.searchbox__icon {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #A3A3C2;
+  font-size: 24px;
+  z-index: 2;
+}
+/* NEW: make the icon look like the screenshot (SVG lines) */
+.searchbox__icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.searchbox__input {
+  flex: 1;
+  height: 100%;
+  font-size: 20px;
+  border: none;
+  border-radius: 16px;
+  padding: 0 45px 0 58px;
+  background: transparent;
+  font-weight: 500;
+  outline: none;
+  box-shadow: none;
+}
+/* NEW: subtle placeholder color like the Colleges page */
+.searchbox__input::placeholder {
+  color: #A3A3C2;
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.btn:disabled { cursor: not-allowed; opacity: 0.8; }
+.btn--add {
+  height: 52px;
+  min-width: 110px;
+  padding: 0 30px;
+  font-size: 17px;
+  background: linear-gradient(90deg, #0306ae 65%);
+  color: #fff;
+  box-shadow: 0 3px 10px #818cf855;
+}
+.btn-plus { font-size: 22px; font-weight: 700; margin-top: -1px; }
+
+.btn--primary {
+  background: linear-gradient(90deg, #3c7eea 75%);
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 2px 7px #e0e7ff;
+  margin-right: 8px;
+}
+.btn--danger {
+  background: linear-gradient(90deg, #0fa804 75%);
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 2px 7px #fca5a5;
+}
+.btn--secondary {
+  padding: 9px 28px;
+  border-radius: 7px;
+  font-size: 16px;
+  color: #6366f1;
+  background: linear-gradient(90deg,#e0e7ff 80%,#f3f0ff);
+  box-shadow: 0 2px 7px #e0e7ff;
+}
+.btn--close-fullwidth {
+  margin-top: 16px;
+  background: linear-gradient(90deg,#818cf8,#a5b4fc);
+  color: #4b5563;
+  border-radius: 6px;
+  padding: 9px 30px;
+  font-size: 15px;
+  width: 100%;
+  box-shadow: 0 2px 8px #e0e7ff;
+}
+
+/* Table wrap */
+.mu-tablewrap-outer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.mu-tablewrap {
+  width: 100%;
+  max-width: 1100px;
+  background: linear-gradient(125deg,#f8fafc 70%, #e0e7ff 100%);
+  border-radius: 22px;
+  box-shadow: 0 9px 32px rgba(102,102,255,0.11);
+  padding: 30px 22px 16px 22px;
+}
+.mu-subtitle {
+  margin: 0 0 18px 0;
+  color: #3b0764;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-shadow: 0 1.5px 6px #bdbdf670;
+  font-size: 25px;
+  text-align: center; /* Center "All Colleges/Groups" */
+}
+.mu-tablecard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 3px 15px rgba(80,81,140,0.07);
+  overflow: auto;
+  border: 1.5px solid #e0e7ff;
+}
+
+/* Table */
+.mu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #fff;
+  font-size: 18px;
+  color: #3730a3;
+}
+.mu-thead-row {
+  background: linear-gradient(90deg,#ede9fe,#c7d2fe 70%, #e0e7ff 100%);
+  color: #3730a3;
+  font-weight: 800;
+}
+.mu-th {
+  padding: 16px 22px;
+  text-align: left;
+  font-weight: 800;
+  font-size: 17px;
+  background: transparent;
+  border-bottom: none;
+}
+.mu-thead-row th:first-child { border-top-left-radius: 16px; }
+.mu-thead-row th:last-child  { border-top-right-radius: 16px; }
+
+.mu-td {
+  padding: 15px 22px;
+  border-bottom: 1.2px solid #e0e7ff;
+  font-size: 16px;
+}
+.mu-td--userid {
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+/* Zebra rows */
+.mu-table tbody tr:nth-child(even) {
+  background: #f3f0ff;
+}
+
+/* Empty row */
+.mu-empty {
+  padding: 24px;
+  text-align: center;
+  color: #818cf8;
+  font-size: 18px;
+  background: #f3f0ff;
+}
+
+/* Status pills */
+.status { font-weight: 700; }
+.status--active  { color: #059669; }
+.status--inactive{ color: #b91c1c; }
+
+/* ===== Actions column: center + horizontal buttons ===== */
+.mu-table .mu-th:last-child,
+.mu-table .mu-td:last-child { text-align: center; }
+.mu-table .mu-td:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.mu-table .mu-td:last-child .btn--primary { margin-right: 0; }
+.mu-table .mu-td:last-child .btn { white-space: nowrap; }
+
+/* Pagination (default style kept for compatibility) */
+.mu-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 22px;
+  background: #f6f7fb;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-top: 1.2px solid #e0e7ff;
+  font-size: 16px;
+}
+.mu-pageinfo { color: #3730a3; }
+
+.mu-pagebtns { display: flex; align-items: center; }
+.btn-page {
+  margin: 0 9px;
+  padding: 7px 15px;
+  background: #f3f0ff;
+  color: #6366f1;
+  border: 1px solid #e0e7ff;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+}
+.btn-page:disabled { color: #b5b5b5; cursor: not-allowed; }
+.badge-page {
+  padding: 7px 16px;
+  background: #eef2ff;
+  color: #5b21b6;
+  font-weight: 800;
+  border-radius: 7px;
+  margin: 0 2px;
+}
+
+/* Screenshot-style pagination chips */
+.mu-pagination--chips { padding: 14px 22px; }
+.mu-pageinfo--chips { color: #312e81; }
+.mu-pagebtns--chips { display: flex; align-items: center; gap: 10px; }
+
+.pagechip {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #5b21b6;
+  border: 1px solid #e0e7ff;
+  font-weight: 800;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.pagechip--active {
+  background: #ede9fe;
+  color: #4c1d95;
+  box-shadow: 0 2px 6px rgba(129,140,248,0.35);
+}
+.pagechip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===================== */
+/*    FORM & GRID UI     */
+/* ===================== */
+
+.form-row { margin-bottom: 14px; }
+.form-label {
+  font-weight: 600;
+  color: #312e81;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  display: block;
+  font-size: 13px;
+}
+
+/* same class for input & select ensures equal height */
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 10px;
+  margin-top: 2px;
+  border-radius: 7px;
+  border: 1.2px solid #c7d2fe;
+  font-size: 15px;
+  background: #f9fafb;
+  outline-color: #6366f1;
+  line-height: 1.25;
+}
+
+/* Grid defaults */
+.form-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* >>> 3 fields per row for Add College <<< */
+.form-grid--3{
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+
+/* tile-like look for each cell */
+.form-grid .form-row{
+  margin-bottom: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 8px 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.form-grid .form-label{ margin-bottom: 6px; }
+
+/* Responsive: 2 cols on tablets, 1 col on phones */
+@media (max-width: 980px){
+  .form-grid--3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 640px){
+  .form-grid--3{ grid-template-columns: 1fr; }
+}
+
+/* optional column spans for longer fields */
+.span-2{ grid-column: span 2; }
+.span-3{ grid-column: span 3; }
+
+/* Submit */
+.btn--submit {
+  width: 100%;
+  padding: 11px;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  box-shadow: 0 2px 12px #e0e7ff;
+  background: linear-gradient(90deg,#7c3aed,#6366F1 60%,#a5b4fc);
+}
+.btn--submit.is-loading {
+  background: linear-gradient(90deg,#818cf8,#a5b4fc);
+}
